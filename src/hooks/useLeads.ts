@@ -41,7 +41,6 @@ export function useLeads() {
     sortOrder: 'desc'
   });
 
-  // Load filters from localStorage on mount
   useEffect(() => {
     const savedFilters = localStorage.getItem('leadFilters');
     if (savedFilters) {
@@ -53,7 +52,6 @@ export function useLeads() {
     }
   }, []);
 
-  // Save filters to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('leadFilters', JSON.stringify(filters));
   }, [filters]);
@@ -79,7 +77,6 @@ export function useLeads() {
     }, 800); // simula latência
   }, []);
 
-  // Filter and sort leads
   const filteredLeads = useMemo(() => {
     let filtered = leads.filter(lead => {
       const matchesSearch = !filters.search || 
@@ -92,7 +89,6 @@ export function useLeads() {
       return matchesSearch && matchesStatus && matchesSource;
     });
 
-    // Sort leads
     filtered.sort((a, b) => {
       let aValue: string | number;
       let bValue: string | number;
@@ -126,16 +122,13 @@ export function useLeads() {
   }, [leads, filters]);
 
   const updateLead = (id: number, updates: Partial<Lead>) => {
-    // Optimistic update
     const originalLeads = leads;
     setLeads(prev => prev.map(lead => 
       lead.id === id ? { ...lead, ...updates } : lead
     ));
 
-    // Simulate API call with potential failure
     setTimeout(() => {
-      if (Math.random() < 0.1) { // 10% chance of failure
-        // Rollback on failure
+      if (Math.random() < 0.1) {
         setLeads(originalLeads);
         throw new Error('Failed to update lead');
       }
@@ -144,9 +137,8 @@ export function useLeads() {
 
   const convertToOpportunity = (lead: Lead, amount?: number): Promise<Opportunity> => {
     return new Promise((resolve, reject) => {
-      // Simulate API call with potential failure
       setTimeout(() => {
-        if (Math.random() < 0.1) { // 10% chance of failure
+        if (Math.random() < 0.1) {
           reject(new Error('Failed to convert lead to opportunity'));
           return;
         }

@@ -46,19 +46,15 @@ export default function Dashboard() {
     try {
       await updateLead(id, updates);
       
-      // Close the detail panel
       setSelectedLead(null);
       
-      // Show success toast
       setToastType('success');
       setToastTitle(t('notifications.leadUpdated.title'));
       setToastMessage(t('notifications.leadUpdated.message'));
       setShowToast(true);
       
-      // Highlight the updated lead
       setHighlightedLeadId(id);
       
-      // Scroll to leads section after a short delay
       setTimeout(() => {
         if (leadsRef.current) {
           leadsRef.current.scrollIntoView({ 
@@ -68,13 +64,11 @@ export default function Dashboard() {
         }
       }, 1000);
       
-      // Remove highlight after 3 seconds
       setTimeout(() => {
         setHighlightedLeadId(null);
       }, 3000);
       
     } catch (error) {
-      // Error is already handled in the component
       throw error;
     }
   };
@@ -83,13 +77,11 @@ export default function Dashboard() {
     try {
       await convertToOpportunity(lead, amount);
       
-      // Show success toast
       setToastType('success');
       setToastTitle(t('notifications.leadConverted.title'));
       setToastMessage(t('notifications.leadConverted.message'));
       setShowToast(true);
       
-      // Scroll to opportunities section after a short delay
       setTimeout(() => {
         if (opportunitiesRef.current) {
           opportunitiesRef.current.scrollIntoView({ 
@@ -100,7 +92,6 @@ export default function Dashboard() {
       }, 1000);
       
     } catch (error) {
-      // Error is already handled in the hook
       throw error;
     }
   };
