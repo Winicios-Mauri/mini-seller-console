@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLeads, Lead } from "../hooks/useLeads";
 import { useTranslation } from "../hooks/useTranslation";
 import LeadFilters from "../components/LeadFilters";
@@ -6,6 +6,7 @@ import LeadList from "../components/LeadList";
 import LeadDetailPanel from "../components/LeadDetailPanel";
 import OpportunitiesTable from "../components/OpportunitiesTable";
 import LanguageSelector from "../components/LanguageSelector";
+import { Toast } from "../components/ui";
 
 export default function Dashboard() {
   const { t } = useTranslation();
@@ -23,6 +24,8 @@ export default function Dashboard() {
   } = useLeads();
   
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [showToast, setShowToast] = useState(false);
+  const opportunitiesRef = useRef<HTMLDivElement>(null);
 
   const handleClearFilters = () => {
     setFilters({
@@ -46,6 +49,20 @@ export default function Dashboard() {
   const handleConvertToOpportunity = async (lead: Lead, amount?: number) => {
     try {
       await convertToOpportunity(lead, amount);
+      
+      // Show success toast
+      setShowToast(true);
+      
+      // Scroll to opportunities section after a short delay
+      setTimeout(() => {
+        if (opportunitiesRef.current) {
+          opportunitiesRef.current.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 1000);
+      
     } catch (error) {
       // Error is already handled in the hook
       throw error;
@@ -93,7 +110,9 @@ export default function Dashboard() {
           />
 
           {/* Opportunities */}
-          <OpportunitiesTable opportunities={opportunities} />
+          <div ref={opportunitiesRef}>
+            <OpportunitiesTable opportunities={opportunities} />
+          </div>
         </div>
       </main>
 
@@ -104,6 +123,16 @@ export default function Dashboard() {
         onUpdateLead={handleUpdateLead}
         onConvertToOpportunity={handleConvertToOpportunity}
         statusOptions={getUniqueStatuses()}
+      />
+
+      {/* Toast Notification */}
+      <Toast
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+        type="success"
+        title={t('notifications.leadConverted.title')}
+        message={t('notifications.leadConverted.message')}
+        duration={5000}
       />
     </div>
   );

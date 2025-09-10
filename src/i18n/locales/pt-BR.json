@@ -93,5 +93,11 @@
     "negotiation": "Negociação",
     "closedWon": "Fechado - Ganho",
     "closedLost": "Fechado - Perdido"
+  },
+  "notifications": {
+    "leadConverted": {
+      "title": "Lead convertido com sucesso!",
+      "message": "O lead foi convertido para oportunidade e adicionado ao pipeline de vendas."
+    }
   }
 }
