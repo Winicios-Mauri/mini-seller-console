@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "company": "TechCorp",
+    "email": "alice@techcorp.com",
+    "source": "Web",
+    "score": 95,
+    "status": "New"
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "company": "HealthPlus",
+    "email": "bob@healthplus.com",
+    "source": "Referral",
+    "score": 87,
+    "status": "Contacted"
+  },
+  {
+    "id": 3,
+    "name": "Carol Davis",
+    "company": "FinanceFlow",
+    "email": "carol@financeflow.com",
+    "source": "Cold Call",
+    "score": 72,
+    "status": "Qualified"
+  },
+  {
+    "id": 4,
+    "name": "David Wilson",
+    "company": "RetailMax",
+    "email": "david@retailmax.com",
+    "source": "Web",
+    "score": 89,
+    "status": "New"
+  },
+  {
+    "id": 5,
+    "name": "Emma Brown",
+    "company": "EduTech Solutions",
+    "email": "emma@edutech.com",
+    "source": "Referral",
+    "score": 91,
+    "status": "Contacted"
+  },
+  {
+    "id": 6,
+    "name": "Frank Miller",
+    "company": "Manufacturing Co",
+    "email": "frank@manufacturing.com",
+    "source": "Trade Show",
+    "score": 68,
+    "status": "New"
+  },
+  {
+    "id": 7,
+    "name": "Grace Lee",
+    "company": "StartupHub",
+    "email": "grace@startuphub.com",
+    "source": "Web",
+    "score": 94,
+    "status": "Qualified"
+  },
+  {
+    "id": 8,
+    "name": "Henry Taylor",
+    "company": "Logistics Pro",
+    "email": "henry@logisticspro.com",
+    "source": "Cold Call",
+    "score": 76,
+    "status": "Contacted"
+  },
+  {
+    "id": 9,
+    "name": "Iris Garcia",
+    "company": "Media Group",
+    "email": "iris@mediagroup.com",
+    "source": "Referral",
+    "score": 82,
+    "status": "New"
+  },
+  {
+    "id": 10,
+    "name": "Jack Anderson",
+    "company": "Consulting Firm",
+    "email": "jack@consulting.com",
+    "source": "Web",
+    "score": 88,
+    "status": "Qualified"
+  },
+  {
+    "id": 11,
+    "name": "Kate Martinez",
+    "company": "Real Estate Co",
+    "email": "kate@realestate.com",
+    "source": "Trade Show",
+    "score": 73,
+    "status": "New"
+  },
+  {
+    "id": 12,
+    "name": "Liam Thompson",
+    "company": "Food Services",
+    "email": "liam@foodservices.com",
+    "source": "Cold Call",
+    "score": 79,
+    "status": "Contacted"
+  },
+  {
+    "id": 13,
+    "name": "Maya Rodriguez",
+    "company": "Tech Innovations",
+    "email": "maya@techinnovations.com",
+    "source": "Web",
+    "score": 96,
+    "status": "Qualified"
+  },
+  {
+    "id": 14,
+    "name": "Noah White",
+    "company": "Construction Ltd",
+    "email": "noah@construction.com",
+    "source": "Referral",
+    "score": 71,
+    "status": "New"
+  },
+  {
+    "id": 15,
+    "name": "Olivia Harris",
+    "company": "Healthcare Systems",
+    "email": "olivia@healthcare.com",
+    "source": "Trade Show",
+    "score": 85,
+    "status": "Contacted"
+  },
+  {
+    "id": 16,
+    "name": "Paul Clark",
+    "company": "Energy Solutions",
+    "email": "paul@energysolutions.com",
+    "source": "Web",
+    "score": 90,
+    "status": "Qualified"
+  },
+  {
+    "id": 17,
+    "name": "Quinn Lewis",
+    "company": "Transportation Co",
+    "email": "quinn@transportation.com",
+    "source": "Cold Call",
+    "score": 74,
+    "status": "New"
+  },
+  {
+    "id": 18,
+    "name": "Rachel Walker",
+    "company": "Marketing Agency",
+    "email": "rachel@marketing.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "Contacted"
+  },
+  {
+    "id": 19,
+    "name": "Samuel Hall",
+    "company": "Legal Services",
+    "email": "samuel@legalservices.com",
+    "source": "Web",
+    "score": 77,
+    "status": "New"
+  },
+  {
+    "id": 20,
+    "name": "Tina Young",
+    "company": "Fashion Retail",
+    "email": "tina@fashion.com",
+    "source": "Trade Show",
+    "score": 86,
+    "status": "Qualified"
+  },
+  {
+    "id": 21,
+    "name": "Uma King",
+    "company": "Sports Equipment",
+    "email": "uma@sports.com",
+    "source": "Cold Call",
+    "score": 69,
+    "status": "New"
+  },
+  {
+    "id": 22,
+    "name": "Victor Wright",
+    "company": "Automotive Parts",
+    "email": "victor@automotive.com",
+    "source": "Web",
+    "score": 81,
+    "status": "Contacted"
+  },
+  {
+    "id": 23,
+    "name": "Wendy Lopez",
+    "company": "Pharmaceuticals",
+    "email": "wendy@pharma.com",
+    "source": "Referral",
+    "score": 92,
+    "status": "Qualified"
+  },
+  {
+    "id": 24,
+    "name": "Xavier Hill",
+    "company": "Telecommunications",
+    "email": "xavier@telecom.com",
+    "source": "Trade Show",
+    "score": 78,
+    "status": "New"
+  },
+  {
+    "id": 25,
+    "name": "Yara Scott",
+    "company": "Banking Services",
+    "email": "yara@banking.com",
+    "source": "Web",
+    "score": 93,
+    "status": "Contacted"
+  },
+  {
+    "id": 26,
+    "name": "Zach Green",
+    "company": "Insurance Group",
+    "email": "zach@insurance.com",
+    "source": "Cold Call",
+    "score": 75,
+    "status": "New"
+  },
+  {
+    "id": 27,
+    "name": "Amy Adams",
+    "company": "Travel Agency",
+    "email": "amy@travel.com",
+    "source": "Referral",
+    "score": 84,
+    "status": "Qualified"
+  },
+  {
+    "id": 28,
+    "name": "Ben Baker",
+    "company": "Restaurant Chain",
+    "email": "ben@restaurant.com",
+    "source": "Web",
+    "score": 70,
+    "status": "Contacted"
+  },
+  {
+    "id": 29,
+    "name": "Cara Nelson",
+    "company": "Fitness Centers",
+    "email": "cara@fitness.com",
+    "source": "Trade Show",
+    "score": 87,
+    "status": "New"
+  },
+  {
+    "id": 30,
+    "name": "Dan Carter",
+    "company": "Pet Care Services",
+    "email": "dan@petcare.com",
+    "source": "Cold Call",
+    "score": 72,
+    "status": "Qualified"
+  }
+]
