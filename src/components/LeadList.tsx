@@ -1,5 +1,6 @@
 import { Lead } from "../hooks/useLeads";
 import { Card, Badge, LoadingSpinner, EmptyState } from './ui';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Props {
   leads: Lead[];
@@ -29,12 +30,14 @@ const getScoreColor = (score: number) => {
 };
 
 export default function LeadList({ leads, loading, error, onSelect }: Props) {
+  const { t } = useTranslation();
+  
   if (loading) {
     return (
       <Card className="flex items-center justify-center py-12">
         <div className="text-center">
           <LoadingSpinner size="lg" className="mx-auto mb-4" />
-          <p className="text-gray-500">Carregando leads...</p>
+          <p className="text-gray-500">{t('leads.loading')}</p>
         </div>
       </Card>
     );
@@ -49,7 +52,7 @@ export default function LeadList({ leads, loading, error, onSelect }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z" />
             </svg>
           }
-          title="Erro ao carregar leads"
+          title={t('leads.error')}
           description={error}
         />
       </Card>
@@ -65,8 +68,8 @@ export default function LeadList({ leads, loading, error, onSelect }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           }
-          title="Nenhum lead encontrado"
-          description="Tente ajustar os filtros para encontrar mais leads."
+          title={t('leads.empty')}
+          description={t('leads.emptyDescription')}
         />
       </Card>
     );
@@ -75,20 +78,20 @@ export default function LeadList({ leads, loading, error, onSelect }: Props) {
   return (
     <Card>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">Leads</h2>
-        <span className="text-sm text-gray-500">{leads.length} lead{leads.length !== 1 ? 's' : ''}</span>
+        <h2 className="text-xl font-semibold text-gray-900">{t('leads.title')}</h2>
+        <span className="text-sm text-gray-500">{t('leads.count', { count: leads.length })}</span>
       </div>
       
       <div className="overflow-x-auto">
         <table className="w-full min-w-[800px]">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="text-left py-3 px-4 font-medium text-gray-700">Nome</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden sm:table-cell">Empresa</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden md:table-cell">Email</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden lg:table-cell">Origem</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700">Score</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700">{t('leads.name')}</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden sm:table-cell">{t('leads.company')}</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden md:table-cell">{t('leads.email')}</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden lg:table-cell">{t('leads.source')}</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700">{t('leads.score')}</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700">{t('leads.status')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -109,7 +112,7 @@ export default function LeadList({ leads, loading, error, onSelect }: Props) {
                   <div className="text-gray-600">{lead.email}</div>
                 </td>
                 <td className="py-4 px-4 hidden lg:table-cell">
-                  <div className="text-gray-600">{lead.source}</div>
+                  <div className="text-gray-600">{t(`source.${lead.source.toLowerCase().replace(' ', '')}`)}</div>
                 </td>
                 <td className="py-4 px-4">
                   <div className={`font-semibold ${getScoreColor(lead.score)}`}>
@@ -118,7 +121,7 @@ export default function LeadList({ leads, loading, error, onSelect }: Props) {
                 </td>
                 <td className="py-4 px-4">
                   <Badge variant={getStatusVariant(lead.status)}>
-                    {lead.status}
+                    {t(`status.${lead.status.toLowerCase()}`)}
                   </Badge>
                 </td>
               </tr>

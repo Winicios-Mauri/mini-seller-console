@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "close": "Fechar",
+    "search": "Buscar",
+    "clear": "Limpar",
+    "all": "Todos",
+    "none": "Nenhum",
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "header": {
+    "title": "Mini Seller Console",
+    "subtitle": "Gerencie seus leads e oportunidades",
+    "leads": "leads",
+    "opportunities": "oportunidades"
+  },
+  "filters": {
+    "title": "Filtros",
+    "searchPlaceholder": "Nome ou empresa...",
+    "status": "Status",
+    "source": "Origem",
+    "sortBy": "Ordenar por",
+    "clearFilters": "Limpar filtros",
+    "score": "Score",
+    "name": "Nome",
+    "company": "Empresa"
+  },
+  "leads": {
+    "title": "Leads",
+    "count": "{{count}} lead",
+    "count_plural": "{{count}} leads",
+    "name": "Nome",
+    "company": "Empresa",
+    "email": "Email",
+    "source": "Origem",
+    "score": "Score",
+    "status": "Status",
+    "loading": "Carregando leads...",
+    "error": "Erro ao carregar leads",
+    "empty": "Nenhum lead encontrado",
+    "emptyDescription": "Tente ajustar os filtros para encontrar mais leads."
+  },
+  "leadDetail": {
+    "title": "Detalhes do Lead",
+    "name": "Nome",
+    "company": "Empresa",
+    "email": "Email",
+    "status": "Status",
+    "source": "Origem",
+    "score": "Score",
+    "convertLead": "Converter Lead",
+    "convertToOpportunity": "Converter para Oportunidade",
+    "amount": "Valor (opcional)",
+    "amountPlaceholder": "0.00",
+    "amountHelper": "Deixe em branco se não souber o valor",
+    "convert": "Converter",
+    "emailInvalid": "Email inválido",
+    "saveError": "Erro ao salvar. Tente novamente.",
+    "converting": "Convertendo..."
+  },
+  "opportunities": {
+    "title": "Oportunidades",
+    "count": "{{count}} oportunidade",
+    "count_plural": "{{count}} oportunidades",
+    "name": "Nome",
+    "stage": "Estágio",
+    "amount": "Valor",
+    "account": "Conta",
+    "createdAt": "Criado em",
+    "empty": "Nenhuma oportunidade criada",
+    "emptyDescription": "Converta leads em oportunidades para começar a acompanhar o pipeline de vendas."
+  },
+  "status": {
+    "new": "Novo",
+    "contacted": "Contatado",
+    "qualified": "Qualificado"
+  },
+  "source": {
+    "web": "Web",
+    "referral": "Indicação",
+    "coldCall": "Ligação Fria",
+    "tradeShow": "Feira"
+  },
+  "stage": {
+    "prospecting": "Prospecção",
+    "qualification": "Qualificação",
+    "proposal": "Proposta",
+    "negotiation": "Negociação",
+    "closedWon": "Fechado - Ganho",
+    "closedLost": "Fechado - Perdido"
+  }
+}

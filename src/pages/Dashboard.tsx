@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useLeads, Lead } from "../hooks/useLeads";
+import { useTranslation } from "../hooks/useTranslation";
 import LeadFilters from "../components/LeadFilters";
 import LeadList from "../components/LeadList";
 import LeadDetailPanel from "../components/LeadDetailPanel";
 import OpportunitiesTable from "../components/OpportunitiesTable";
+import LanguageSelector from "../components/LanguageSelector";
 
 export default function Dashboard() {
+  const { t } = useTranslation();
   const { 
     leads, 
     opportunities,
@@ -56,12 +59,13 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between h-auto sm:h-16 py-4 sm:py-0">
             <div className="mb-2 sm:mb-0">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Mini Seller Console</h1>
-              <p className="text-sm text-gray-500">Gerencie seus leads e oportunidades</p>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('header.title')}</h1>
+              <p className="text-sm text-gray-500">{t('header.subtitle')}</p>
             </div>
             <div className="flex items-center space-x-4">
+              <LanguageSelector />
               <div className="text-sm text-gray-500">
-                {leads.length} leads • {opportunities.length} oportunidades
+                {t('leads.count', { count: leads.length })} • {t('opportunities.count', { count: opportunities.length })}
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Select, Button } from './ui';
 import { LeadFilters as LeadFiltersType } from '../hooks/useLeads';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Props {
   filters: LeadFiltersType;
@@ -17,6 +18,8 @@ export default function LeadFilters({
   sourceOptions,
   onClearFilters 
 }: Props) {
+  const { t } = useTranslation();
+  
   const handleFilterChange = (key: keyof LeadFiltersType, value: string) => {
     onFiltersChange({ ...filters, [key]: value });
   };
@@ -31,7 +34,7 @@ export default function LeadFilters({
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">Filtros</h3>
+        <h3 className="text-lg font-semibold text-gray-900">{t('filters.title')}</h3>
         {hasActiveFilters && (
           <Button
             variant="ghost"
@@ -39,15 +42,15 @@ export default function LeadFilters({
             onClick={onClearFilters}
             className="text-gray-500 hover:text-gray-700"
           >
-            Limpar filtros
+            {t('filters.clearFilters')}
           </Button>
         )}
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Input
-          label="Buscar"
-          placeholder="Nome ou empresa..."
+          label={t('common.search')}
+          placeholder={t('filters.searchPlaceholder')}
           value={filters.search}
           onChange={(e) => handleFilterChange('search', e.target.value)}
           leftIcon={
@@ -58,23 +61,23 @@ export default function LeadFilters({
         />
         
         <Select
-          label="Status"
-          placeholder="Todos os status"
+          label={t('filters.status')}
+          placeholder={t('common.all')}
           value={filters.status}
           onChange={(e) => handleFilterChange('status', e.target.value)}
-          options={statusOptions.map(status => ({ value: status, label: status }))}
+          options={statusOptions.map(status => ({ value: status, label: t(`status.${status.toLowerCase()}`) }))}
         />
         
         <Select
-          label="Origem"
-          placeholder="Todas as origens"
+          label={t('filters.source')}
+          placeholder={t('common.all')}
           value={filters.source}
           onChange={(e) => handleFilterChange('source', e.target.value)}
-          options={sourceOptions.map(source => ({ value: source, label: source }))}
+          options={sourceOptions.map(source => ({ value: source, label: t(`source.${source.toLowerCase().replace(' ', '')}`) }))}
         />
         
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">Ordenar por</label>
+          <label className="block text-sm font-medium text-gray-700">{t('filters.sortBy')}</label>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <Button
               variant={filters.sortBy === 'score' ? 'primary' : 'outline'}
@@ -82,7 +85,7 @@ export default function LeadFilters({
               onClick={() => handleSortChange('score')}
               className="w-full"
             >
-              Score {filters.sortBy === 'score' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
+              {t('filters.score')} {filters.sortBy === 'score' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
             </Button>
             <Button
               variant={filters.sortBy === 'name' ? 'primary' : 'outline'}
@@ -90,7 +93,7 @@ export default function LeadFilters({
               onClick={() => handleSortChange('name')}
               className="w-full"
             >
-              Nome {filters.sortBy === 'name' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
+              {t('filters.name')} {filters.sortBy === 'name' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
             </Button>
             <Button
               variant={filters.sortBy === 'company' ? 'primary' : 'outline'}
@@ -98,7 +101,7 @@ export default function LeadFilters({
               onClick={() => handleSortChange('company')}
               className="w-full"
             >
-              Empresa {filters.sortBy === 'company' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
+              {t('filters.company')} {filters.sortBy === 'company' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
             </Button>
           </div>
         </div>

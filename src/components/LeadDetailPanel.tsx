@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Lead } from "../hooks/useLeads";
 import { SlideOver, Input, Select, Button, Badge } from './ui';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Props {
   lead: Lead | null;
@@ -22,6 +23,7 @@ export default function LeadDetailPanel({
   onConvertToOpportunity,
   statusOptions 
 }: Props) {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [editedLead, setEditedLead] = useState<Partial<Lead>>({});
   const [emailError, setEmailError] = useState<string>('');
@@ -44,7 +46,7 @@ export default function LeadDetailPanel({
 
   const handleSave = async () => {
     if (editedLead.email && !validateEmail(editedLead.email)) {
-      setEmailError('Email inválido');
+      setEmailError(t('leadDetail.emailInvalid'));
       return;
     }
 
@@ -57,7 +59,7 @@ export default function LeadDetailPanel({
         setIsEditing(false);
         setEmailError('');
       } catch (error) {
-        setSaveError('Erro ao salvar. Tente novamente.');
+        setSaveError(t('leadDetail.saveError'));
       } finally {
         setIsSaving(false);
       }
@@ -78,7 +80,7 @@ export default function LeadDetailPanel({
     setEditedLead({ ...editedLead, email });
     
     if (email && !validateEmail(email)) {
-      setEmailError('Email inválido');
+      setEmailError(t('leadDetail.emailInvalid'));
     } else {
       setEmailError('');
     }
@@ -104,7 +106,7 @@ export default function LeadDetailPanel({
   if (!lead) return null;
 
   return (
-    <SlideOver isOpen={!!lead} onClose={onClose} title="Detalhes do Lead">
+    <SlideOver isOpen={!!lead} onClose={onClose} title={t('leadDetail.title')}>
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -113,7 +115,7 @@ export default function LeadDetailPanel({
             <p className="text-sm text-gray-500">{lead.company}</p>
           </div>
           <Badge variant="info" size="lg">
-            Score: {lead.score}
+            {t('leadDetail.score')}: {lead.score}
           </Badge>
         </div>
 
@@ -121,21 +123,21 @@ export default function LeadDetailPanel({
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Nome
+              {t('leadDetail.name')}
             </label>
             <div className="text-gray-900">{lead.name}</div>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Empresa
+              {t('leadDetail.company')}
             </label>
             <div className="text-gray-900">{lead.company}</div>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email
+              {t('leadDetail.email')}
             </label>
             {isEditing ? (
               <Input
@@ -151,24 +153,24 @@ export default function LeadDetailPanel({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Status
+              {t('leadDetail.status')}
             </label>
             {isEditing ? (
               <Select
                 value={editedLead.status || ''}
                 onChange={(e) => setEditedLead({ ...editedLead, status: e.target.value })}
-                options={statusOptions.map(status => ({ value: status, label: status }))}
+                options={statusOptions.map(status => ({ value: status, label: t(`status.${status.toLowerCase()}`) }))}
               />
             ) : (
-              <Badge variant="info">{lead.status}</Badge>
+              <Badge variant="info">{t(`status.${lead.status.toLowerCase()}`)}</Badge>
             )}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Origem
+              {t('leadDetail.source')}
             </label>
-            <div className="text-gray-900">{lead.source}</div>
+            <div className="text-gray-900">{t(`source.${lead.source.toLowerCase().replace(' ', '')}`)}</div>
           </div>
         </div>
 
@@ -190,7 +192,7 @@ export default function LeadDetailPanel({
                 loading={isSaving}
                 className="flex-1"
               >
-                Salvar
+                {t('common.save')}
               </Button>
               <Button
                 variant="outline"
@@ -198,7 +200,7 @@ export default function LeadDetailPanel({
                 disabled={isSaving}
                 className="flex-1"
               >
-                Cancelar
+                {t('common.cancel')}
               </Button>
             </>
           ) : (
@@ -208,14 +210,14 @@ export default function LeadDetailPanel({
                 onClick={() => setIsEditing(true)}
                 className="flex-1"
               >
-                Editar
+                {t('common.edit')}
               </Button>
               <Button
                 variant="primary"
                 onClick={() => setShowConversionForm(true)}
                 className="flex-1"
               >
-                Converter Lead
+                {t('leadDetail.convertLead')}
               </Button>
             </>
           )}
@@ -224,14 +226,14 @@ export default function LeadDetailPanel({
         {/* Conversion Form */}
         {showConversionForm && (
           <div className="bg-gray-50 p-4 rounded-lg space-y-4">
-            <h3 className="font-medium text-gray-900">Converter para Oportunidade</h3>
+            <h3 className="font-medium text-gray-900">{t('leadDetail.convertToOpportunity')}</h3>
             <Input
-              label="Valor (opcional)"
+              label={t('leadDetail.amount')}
               type="number"
-              placeholder="0.00"
+              placeholder={t('leadDetail.amountPlaceholder')}
               value={conversionAmount}
               onChange={(e) => setConversionAmount(e.target.value)}
-              helperText="Deixe em branco se não souber o valor"
+              helperText={t('leadDetail.amountHelper')}
             />
             <div className="flex space-x-3">
               <Button
@@ -240,14 +242,14 @@ export default function LeadDetailPanel({
                 loading={isConverting}
                 className="flex-1"
               >
-                Converter
+                {t('leadDetail.convert')}
               </Button>
               <Button
                 variant="outline"
                 onClick={() => setShowConversionForm(false)}
                 className="flex-1"
               >
-                Cancelar
+                {t('common.cancel')}
               </Button>
             </div>
           </div>

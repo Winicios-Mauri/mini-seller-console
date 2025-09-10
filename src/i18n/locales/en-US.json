@@ -1,0 +1,97 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "close": "Close",
+    "search": "Search",
+    "clear": "Clear",
+    "all": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "header": {
+    "title": "Mini Seller Console",
+    "subtitle": "Manage your leads and opportunities",
+    "leads": "leads",
+    "opportunities": "opportunities"
+  },
+  "filters": {
+    "title": "Filters",
+    "searchPlaceholder": "Name or company...",
+    "status": "Status",
+    "source": "Source",
+    "sortBy": "Sort by",
+    "clearFilters": "Clear filters",
+    "score": "Score",
+    "name": "Name",
+    "company": "Company"
+  },
+  "leads": {
+    "title": "Leads",
+    "count": "{{count}} lead",
+    "count_plural": "{{count}} leads",
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "source": "Source",
+    "score": "Score",
+    "status": "Status",
+    "loading": "Loading leads...",
+    "error": "Error loading leads",
+    "empty": "No leads found",
+    "emptyDescription": "Try adjusting the filters to find more leads."
+  },
+  "leadDetail": {
+    "title": "Lead Details",
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "status": "Status",
+    "source": "Source",
+    "score": "Score",
+    "convertLead": "Convert Lead",
+    "convertToOpportunity": "Convert to Opportunity",
+    "amount": "Amount (optional)",
+    "amountPlaceholder": "0.00",
+    "amountHelper": "Leave blank if you don't know the amount",
+    "convert": "Convert",
+    "emailInvalid": "Invalid email",
+    "saveError": "Error saving. Please try again.",
+    "converting": "Converting..."
+  },
+  "opportunities": {
+    "title": "Opportunities",
+    "count": "{{count}} opportunity",
+    "count_plural": "{{count}} opportunities",
+    "name": "Name",
+    "stage": "Stage",
+    "amount": "Amount",
+    "account": "Account",
+    "createdAt": "Created at",
+    "empty": "No opportunities created",
+    "emptyDescription": "Convert leads to opportunities to start tracking your sales pipeline."
+  },
+  "status": {
+    "new": "New",
+    "contacted": "Contacted",
+    "qualified": "Qualified"
+  },
+  "source": {
+    "web": "Web",
+    "referral": "Referral",
+    "coldCall": "Cold Call",
+    "tradeShow": "Trade Show"
+  },
+  "stage": {
+    "prospecting": "Prospecting",
+    "qualification": "Qualification",
+    "proposal": "Proposal",
+    "negotiation": "Negotiation",
+    "closedWon": "Closed Won",
+    "closedLost": "Closed Lost"
+  }
+}
