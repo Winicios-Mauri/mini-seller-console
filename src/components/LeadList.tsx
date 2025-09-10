@@ -7,6 +7,7 @@ interface Props {
   loading: boolean;
   error: string | null;
   onSelect: (lead: Lead) => void;
+  highlightedLeadId?: number | null;
 }
 
 const getStatusVariant = (status: string) => {
@@ -29,7 +30,7 @@ const getScoreColor = (score: number) => {
   return 'text-red-600';
 };
 
-export default function LeadList({ leads, loading, error, onSelect }: Props) {
+export default function LeadList({ leads, loading, error, onSelect, highlightedLeadId }: Props) {
   const { t } = useTranslation();
   
   if (loading) {
@@ -99,7 +100,11 @@ export default function LeadList({ leads, loading, error, onSelect }: Props) {
               <tr
                 key={lead.id}
                 onClick={() => onSelect(lead)}
-                className="cursor-pointer hover:bg-gray-50 transition-colors duration-150"
+                className={`cursor-pointer hover:bg-gray-50 transition-all duration-300 ${
+                  highlightedLeadId === lead.id 
+                    ? 'bg-green-50 border-l-4 border-l-green-500 shadow-md' 
+                    : ''
+                }`}
               >
                 <td className="py-4 px-4">
                   <div className="font-medium text-gray-900">{lead.name}</div>

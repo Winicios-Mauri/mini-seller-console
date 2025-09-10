@@ -98,6 +98,10 @@
     "leadConverted": {
       "title": "Lead convertido com sucesso!",
       "message": "O lead foi convertido para oportunidade e adicionado ao pipeline de vendas."
+    },
+    "leadUpdated": {
+      "title": "Lead atualizado com sucesso!",
+      "message": "As informações do lead foram salvas com sucesso."
     }
   }
 }

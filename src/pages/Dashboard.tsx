@@ -25,7 +25,12 @@ export default function Dashboard() {
   
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [showToast, setShowToast] = useState(false);
+  const [toastType, setToastType] = useState<'success' | 'error' | 'info' | 'warning'>('success');
+  const [toastTitle, setToastTitle] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
+  const [highlightedLeadId, setHighlightedLeadId] = useState<number | null>(null);
   const opportunitiesRef = useRef<HTMLDivElement>(null);
+  const leadsRef = useRef<HTMLDivElement>(null);
 
   const handleClearFilters = () => {
     setFilters({
@@ -40,6 +45,34 @@ export default function Dashboard() {
   const handleUpdateLead = async (id: number, updates: Partial<Lead>) => {
     try {
       await updateLead(id, updates);
+      
+      // Close the detail panel
+      setSelectedLead(null);
+      
+      // Show success toast
+      setToastType('success');
+      setToastTitle(t('notifications.leadUpdated.title'));
+      setToastMessage(t('notifications.leadUpdated.message'));
+      setShowToast(true);
+      
+      // Highlight the updated lead
+      setHighlightedLeadId(id);
+      
+      // Scroll to leads section after a short delay
+      setTimeout(() => {
+        if (leadsRef.current) {
+          leadsRef.current.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 1000);
+      
+      // Remove highlight after 3 seconds
+      setTimeout(() => {
+        setHighlightedLeadId(null);
+      }, 3000);
+      
     } catch (error) {
       // Error is already handled in the component
       throw error;
@@ -51,6 +84,9 @@ export default function Dashboard() {
       await convertToOpportunity(lead, amount);
       
       // Show success toast
+      setToastType('success');
+      setToastTitle(t('notifications.leadConverted.title'));
+      setToastMessage(t('notifications.leadConverted.message'));
       setShowToast(true);
       
       // Scroll to opportunities section after a short delay
@@ -102,12 +138,15 @@ export default function Dashboard() {
           />
 
           {/* Leads List */}
-          <LeadList
-            leads={leads}
-            loading={loading}
-            error={error}
-            onSelect={setSelectedLead}
-          />
+          <div ref={leadsRef}>
+            <LeadList
+              leads={leads}
+              loading={loading}
+              error={error}
+              onSelect={setSelectedLead}
+              highlightedLeadId={highlightedLeadId}
+            />
+          </div>
 
           {/* Opportunities */}
           <div ref={opportunitiesRef}>
@@ -129,9 +168,9 @@ export default function Dashboard() {
       <Toast
         isVisible={showToast}
         onClose={() => setShowToast(false)}
-        type="success"
-        title={t('notifications.leadConverted.title')}
-        message={t('notifications.leadConverted.message')}
+        type={toastType}
+        title={toastTitle}
+        message={toastMessage}
         duration={5000}
       />
     </div>
