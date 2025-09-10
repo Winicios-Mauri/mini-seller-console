@@ -170,7 +170,7 @@ export default function LeadDetailPanel({
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {t('leadDetail.source')}
             </label>
-            <div className="text-gray-900">{t(`source.${lead.source.toLowerCase().replace(' ', '')}`)}</div>
+            <div className="text-gray-900">{t(`source.${lead.source.toLowerCase().replace(/\s+/g, '')}`)}</div>
           </div>
         </div>
 

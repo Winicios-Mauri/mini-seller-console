@@ -1,4 +1,3 @@
-import React from 'react';
 import { Input, Select, Button } from './ui';
 import { LeadFilters as LeadFiltersType } from '../hooks/useLeads';
 import { useTranslation } from '../hooks/useTranslation';
@@ -32,34 +31,39 @@ export default function LeadFilters({
   const hasActiveFilters = filters.search || filters.status || filters.source;
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">{t('filters.title')}</h3>
-        {hasActiveFilters && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClearFilters}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            {t('filters.clearFilters')}
-          </Button>
-        )}
-      </div>
+    <div className="space-y-4">
+      {/* Clear Filters Button */}
+      {hasActiveFilters && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onClearFilters}
+          className="w-full text-gray-600 hover:text-gray-800 border-gray-300"
+        >
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          {t('filters.clearFilters')}
+        </Button>
+      )}
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Search Input */}
+      <div className="space-y-2">
         <Input
           label={t('common.search')}
           placeholder={t('filters.searchPlaceholder')}
           value={filters.search}
           onChange={(e) => handleFilterChange('search', e.target.value)}
           leftIcon={
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           }
         />
-        
+      </div>
+      
+      {/* Status Filter */}
+      <div className="space-y-2">
         <Select
           label={t('filters.status')}
           placeholder={t('common.all')}
@@ -67,43 +71,68 @@ export default function LeadFilters({
           onChange={(e) => handleFilterChange('status', e.target.value)}
           options={statusOptions.map(status => ({ value: status, label: t(`status.${status.toLowerCase()}`) }))}
         />
-        
+      </div>
+      
+      {/* Source Filter */}
+      <div className="space-y-2">
         <Select
           label={t('filters.source')}
           placeholder={t('common.all')}
           value={filters.source}
           onChange={(e) => handleFilterChange('source', e.target.value)}
-          options={sourceOptions.map(source => ({ value: source, label: t(`source.${source.toLowerCase().replace(' ', '')}`) }))}
+          options={sourceOptions.map(source => ({ value: source, label: t(`source.${source.toLowerCase().replace(/\s+/g, '')}`) }))}
         />
-        
+      </div>
+      
+      {/* Sort Options */}
+      <div className="space-y-3">
+        <label className="block text-sm font-medium text-gray-700">{t('filters.sortBy')}</label>
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">{t('filters.sortBy')}</label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <Button
-              variant={filters.sortBy === 'score' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => handleSortChange('score')}
-              className="w-full"
-            >
-              {t('filters.score')} {filters.sortBy === 'score' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
-            </Button>
-            <Button
-              variant={filters.sortBy === 'name' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => handleSortChange('name')}
-              className="w-full"
-            >
-              {t('filters.name')} {filters.sortBy === 'name' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
-            </Button>
-            <Button
-              variant={filters.sortBy === 'company' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => handleSortChange('company')}
-              className="w-full"
-            >
-              {t('filters.company')} {filters.sortBy === 'company' && (filters.sortOrder === 'desc' ? '↓' : '↑')}
-            </Button>
-          </div>
+          <Button
+            variant={filters.sortBy === 'score' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => handleSortChange('score')}
+            className="w-full justify-start"
+          >
+            <span className="flex items-center justify-between w-full">
+              <span>{t('filters.score')}</span>
+              {filters.sortBy === 'score' && (
+                <span className="text-xs">
+                  {filters.sortOrder === 'desc' ? '↓' : '↑'}
+                </span>
+              )}
+            </span>
+          </Button>
+          <Button
+            variant={filters.sortBy === 'name' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => handleSortChange('name')}
+            className="w-full justify-start"
+          >
+            <span className="flex items-center justify-between w-full">
+              <span>{t('filters.name')}</span>
+              {filters.sortBy === 'name' && (
+                <span className="text-xs">
+                  {filters.sortOrder === 'desc' ? '↓' : '↑'}
+                </span>
+              )}
+            </span>
+          </Button>
+          <Button
+            variant={filters.sortBy === 'company' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => handleSortChange('company')}
+            className="w-full justify-start"
+          >
+            <span className="flex items-center justify-between w-full">
+              <span>{t('filters.company')}</span>
+              {filters.sortBy === 'company' && (
+                <span className="text-xs">
+                  {filters.sortOrder === 'desc' ? '↓' : '↑'}
+                </span>
+              )}
+            </span>
+          </Button>
         </div>
       </div>
     </div>

@@ -84,7 +84,10 @@
     "web": "Web",
     "referral": "Indicação",
     "coldCall": "Ligação Fria",
-    "tradeShow": "Feira"
+    "coldcall": "Ligação Fria",
+    "cold": "Ligação Fria",
+    "tradeShow": "Feira",
+    "tradeshow": "Feira"
   },
   "stage": {
     "prospecting": "Prospecção",

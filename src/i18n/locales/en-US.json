@@ -84,7 +84,10 @@
     "web": "Web",
     "referral": "Referral",
     "coldCall": "Cold Call",
-    "tradeShow": "Trade Show"
+    "coldcall": "Cold Call",
+    "cold": "Cold Call",
+    "tradeShow": "Trade Show",
+    "tradeshow": "Trade Show"
   },
   "stage": {
     "prospecting": "Prospecting",

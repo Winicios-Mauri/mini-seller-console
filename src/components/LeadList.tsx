@@ -78,21 +78,21 @@ export default function LeadList({ leads, loading, error, onSelect, highlightedL
 
   return (
     <Card>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">{t('leads.title')}</h2>
-        <span className="text-sm text-gray-500">{t('leads.count', { count: leads.length })}</span>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">{t('leads.title')}</h2>
+        <span className="text-xs text-gray-500">{t('leads.count', { count: leads.length })}</span>
       </div>
       
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[800px]">
+        <table className="w-full min-w-[900px]">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="text-left py-3 px-4 font-medium text-gray-700">{t('leads.name')}</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden sm:table-cell">{t('leads.company')}</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden md:table-cell">{t('leads.email')}</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700 hidden lg:table-cell">{t('leads.source')}</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700">{t('leads.score')}</th>
-              <th className="text-left py-3 px-4 font-medium text-gray-700">{t('leads.status')}</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700 text-sm min-w-[150px]">{t('leads.name')}</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700 text-sm min-w-[120px] hidden sm:table-cell">{t('leads.company')}</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700 text-sm min-w-[180px] hidden md:table-cell">{t('leads.email')}</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700 text-sm min-w-[100px] hidden lg:table-cell">{t('leads.source')}</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700 text-sm min-w-[80px]">{t('leads.score')}</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700 text-sm min-w-[100px]">{t('leads.status')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -106,26 +106,26 @@ export default function LeadList({ leads, loading, error, onSelect, highlightedL
                     : ''
                 }`}
               >
-                <td className="py-4 px-4">
-                  <div className="font-medium text-gray-900">{lead.name}</div>
-                  <div className="text-sm text-gray-500 sm:hidden">{lead.company}</div>
+                <td className="py-2 px-3 min-w-[150px]">
+                  <div className="font-medium text-gray-900 text-sm">{lead.name}</div>
+                  <div className="text-xs text-gray-500 sm:hidden">{lead.company}</div>
                 </td>
-                <td className="py-4 px-4 hidden sm:table-cell">
-                  <div className="text-gray-600">{lead.company}</div>
+                <td className="py-2 px-3 min-w-[120px] hidden sm:table-cell">
+                  <div className="text-gray-600 text-sm">{lead.company}</div>
                 </td>
-                <td className="py-4 px-4 hidden md:table-cell">
-                  <div className="text-gray-600">{lead.email}</div>
+                <td className="py-2 px-3 min-w-[180px] hidden md:table-cell">
+                  <div className="text-gray-600 text-sm">{lead.email}</div>
                 </td>
-                <td className="py-4 px-4 hidden lg:table-cell">
-                  <div className="text-gray-600">{t(`source.${lead.source.toLowerCase().replace(' ', '')}`)}</div>
+                <td className="py-2 px-3 min-w-[100px] hidden lg:table-cell">
+                  <div className="text-gray-600 text-sm">{t(`source.${lead.source.toLowerCase().replace(/\s+/g, '')}`)}</div>
                 </td>
-                <td className="py-4 px-4">
-                  <div className={`font-semibold ${getScoreColor(lead.score)}`}>
+                <td className="py-2 px-3 min-w-[80px]">
+                  <div className={`font-semibold text-sm ${getScoreColor(lead.score)}`}>
                     {lead.score}
                   </div>
                 </td>
-                <td className="py-4 px-4">
-                  <Badge variant={getStatusVariant(lead.status)}>
+                <td className="py-2 px-3 min-w-[100px]">
+                  <Badge variant={getStatusVariant(lead.status)} className="text-xs">
                     {t(`status.${lead.status.toLowerCase()}`)}
                   </Badge>
                 </td>
